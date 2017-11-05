@@ -64,7 +64,7 @@ if(isset($_SESSION["user"]))
                 <form id="frmCreateTest" onsubmit="return validateForm()" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);  ?>" method="post">
                     <div class="row">
                         <div class="input-field col s12 m12 l12">
-                            <input type="text" id="tstnam" name="tstnam">
+                            <input type="text" id="tstnam" name="tstnam" minlength="3">
                             <label for="tstnam">Test Name</label>
                         </div>
                     </div>
@@ -151,6 +151,15 @@ if(isset($_SESSION["user"]))
             $("#tstnam").focus();
             return false;
         }
+
+        var alphanumers = /^[a-zA-Z0-9]+$/;
+        if(!alphanumers.test($("#tstnam").val())){
+            strMessage += "Test name must not contain special characters</br>";
+            toastr["error"](strMessage);
+            $("#tstnam").focus();
+            return false;
+        }
+
         if($("#cor").val()==""){
             strMessage += "Please select course</br>";
             toastr["error"](strMessage);
@@ -181,19 +190,28 @@ if(isset($_SESSION["user"]))
             $("#to").focus();
             return false;
         }
+
+        if($("#fr").val() > $("#to").val()){
+            strMessage += "Valid to date is invalid</br>";
+            toastr["error"](strMessage);
+            $("#to").focus();
+            return false;
+        }
+
         if($("#tq").val()==""){
             strMessage += "Please enter Total Question</br>";
             toastr["error"](strMessage);
             $("#tq").focus();
             return false;
-        }else{
-            if(!$.isNumeric($("#tq").val())){
-                strMessage += "Total question field should be number only</br>";
-                toastr["error"](strMessage);
-                $("#tq").focus();
-                return false;
-            }
         }
+
+        if(!$.isNumeric($("#tq").val())){
+            strMessage += "Total question field should be number only</br>";
+            toastr["error"](strMessage);
+            $("#tq").focus();
+            return false;
+        }
+
         if($("#dur").val()==""){
             strMessage += "Please select Total Duration</br>";
             toastr["error"](strMessage);
