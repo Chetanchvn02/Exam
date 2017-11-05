@@ -147,7 +147,7 @@ if(isset($_SESSION["user"]))
         /* Checking each form fields   */
         if($("#tstnam").val()==""){
             strMessage += "Please enter Test name</br>";
-            toastr["error"](strMessage);
+            toastr["error"](strMessage,'Failed!');
             $("#tstnam").focus();
             return false;
         }
@@ -155,72 +155,72 @@ if(isset($_SESSION["user"]))
         var alphanumers = /^[a-zA-Z0-9]+$/;
         if(!alphanumers.test($("#tstnam").val())){
             strMessage += "Test name must not contain special characters</br>";
-            toastr["error"](strMessage);
+            toastr["error"](strMessage,'Failed!');
             $("#tstnam").focus();
             return false;
         }
 
         if($("#cor").val()==""){
             strMessage += "Please select course</br>";
-            toastr["error"](strMessage);
+            toastr["error"](strMessage,'Failed!');
             $("#cor").focus();
             return false;
         }
         if($("#sem").val()==""){
             strMessage += "Please select Semester</br>";
-            toastr["error"](strMessage);
+            toastr["error"](strMessage,'Failed!');
             $("#sem").focus();
             return false;
         }
         if($("#div").val()==""){
             strMessage += "Please select Division</br>";
-            toastr["error"](strMessage);
+            toastr["error"](strMessage,'Failed!');
             $("#div").focus();
             return false;
         }
         if($("#fr").val()==""){
             strMessage += "Please select Valid From date</br>";
-            toastr["error"](strMessage);
+            toastr["error"](strMessage,'Failed!');
             $("#fr").focus();
             return false;
         }
         if($("#to").val()==""){
             strMessage += "Please select Valid To date</br>";
-            toastr["error"](strMessage);
+            toastr["error"](strMessage,'Failed!');
             $("#to").focus();
             return false;
         }
 
         if($("#fr").val() > $("#to").val()){
             strMessage += "Valid to date is invalid</br>";
-            toastr["error"](strMessage);
+            toastr["error"](strMessage,'Failed!');
             $("#to").focus();
             return false;
         }
 
         if($("#tq").val()==""){
             strMessage += "Please enter Total Question</br>";
-            toastr["error"](strMessage);
+            toastr["error"](strMessage,'Failed!');
             $("#tq").focus();
             return false;
         }
 
         if(!$.isNumeric($("#tq").val())){
             strMessage += "Total question field should be number only</br>";
-            toastr["error"](strMessage);
+            toastr["error"](strMessage,'Failed!');
             $("#tq").focus();
             return false;
         }
 
         if($("#dur").val()==""){
             strMessage += "Please select Total Duration</br>";
-            toastr["error"](strMessage);
+            toastr["error"](strMessage,'Failed!');
             $("#dur").focus();
             return false;
         }
         if($("#tc").val()==""){
             strMessage += "Please select Total Code</br>";
-            toastr["error"](strMessage);
+            toastr["error"](strMessage,'Failed!');
             $("#tc").focus();
             return false;
         }
