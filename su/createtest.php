@@ -61,7 +61,7 @@ if(isset($_SESSION["user"]))
                 <div class="card-title">
                     <h3 class="center-align gray-text">Create Test</h3>
                 </div>
-                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);  ?>" method="post">
+                <form id="frmCreateTest" onsubmit="return validateForm()" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);  ?>" method="post">
                     <div class="row">
                         <div class="input-field col s12 m12 l12">
                             <input type="text" id="tstnam" name="tstnam">
@@ -138,7 +138,55 @@ if(isset($_SESSION["user"]))
                 </form>
             </div>
         </div>
+
+<script>
+
+    function validateForm(){
+        var strMessage = "";
+
+        /* Checking each form fields   */
+        if($("#tstnam").val()==""){
+            strMessage += "Please enter Test name</br>";
+        }
+        if($("#cor").val()==""){
+            strMessage += "Please select course</br>";
+        }
+        if($("#sem").val()==""){
+            strMessage += "Please select Semester</br>";
+        }
+        if($("#div").val()==""){
+            strMessage += "Please select Division</br>";
+        }
+        if($("#fr").val()==""){
+            strMessage += "Please select Valid From date</br>";
+        }
+        if($("#to").val()==""){
+            strMessage += "Please select Valid To date</br>";
+        }
+        if($("#tq").val()==""){
+            strMessage += "Please enter Total Question</br>";
+        }
+        if($("#dur").val()==""){
+            strMessage += "Please select Total Duration</br>";
+        }
+        if($("#tc").val()==""){
+            strMessage += "Please select Total Code</br>";
+        }
+        /* Checking each form fields   */
+
+        /* Checking if validation failed   */
+
+        if(strMessage==""){
+            return false;
+        }
+        /* Checking if validation failed   */
+
+        toastr["error"](strMessage);
+        return false;
+    }
+</script>
 </body>
+
 </html>
 <?php
 if(isset($_POST["submit"]))
