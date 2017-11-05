@@ -1,0 +1,2 @@
+echo "TEst id".$row['testid']."Teast name".$row['testname']."Course".$row['course']."semester".$row['semester']."Total Question".$row['total_question']."Duration".$row['duration']."from Valid date".$row['from_valid']."Todate".$row['to_valid']."Test code".$row['test_code'];
+			
