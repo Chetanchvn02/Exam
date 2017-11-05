@@ -147,42 +147,68 @@ if(isset($_SESSION["user"]))
         /* Checking each form fields   */
         if($("#tstnam").val()==""){
             strMessage += "Please enter Test name</br>";
+            toastr["error"](strMessage);
+            $("#tstnam").focus();
+            return false;
         }
         if($("#cor").val()==""){
             strMessage += "Please select course</br>";
+            toastr["error"](strMessage);
+            $("#cor").focus();
+            return false;
         }
         if($("#sem").val()==""){
             strMessage += "Please select Semester</br>";
+            toastr["error"](strMessage);
+            $("#sem").focus();
+            return false;
         }
         if($("#div").val()==""){
             strMessage += "Please select Division</br>";
+            toastr["error"](strMessage);
+            $("#div").focus();
+            return false;
         }
         if($("#fr").val()==""){
             strMessage += "Please select Valid From date</br>";
+            toastr["error"](strMessage);
+            $("#fr").focus();
+            return false;
         }
         if($("#to").val()==""){
             strMessage += "Please select Valid To date</br>";
+            toastr["error"](strMessage);
+            $("#to").focus();
+            return false;
         }
         if($("#tq").val()==""){
             strMessage += "Please enter Total Question</br>";
+            toastr["error"](strMessage);
+            $("#tq").focus();
+            return false;
+        }else{
+            if(!$.isNumeric($("#tq").val())){
+                strMessage += "Total question field should be number only</br>";
+                toastr["error"](strMessage);
+                $("#tq").focus();
+                return false;
+            }
         }
         if($("#dur").val()==""){
             strMessage += "Please select Total Duration</br>";
+            toastr["error"](strMessage);
+            $("#dur").focus();
+            return false;
         }
         if($("#tc").val()==""){
             strMessage += "Please select Total Code</br>";
+            toastr["error"](strMessage);
+            $("#tc").focus();
+            return false;
         }
         /* Checking each form fields   */
 
-        /* Checking if validation failed   */
-
-        if(strMessage==""){
-            return false;
-        }
-        /* Checking if validation failed   */
-
-        toastr["error"](strMessage);
-        return false;
+        return true;
     }
 </script>
 </body>
