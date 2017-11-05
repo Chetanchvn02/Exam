@@ -51,11 +51,11 @@ if(isset($_SESSION["user"]))
 	<div class="card-title">
         <h3 class="center-align grey-text">Update Test</h3>
     </div>
-	<form action="" method="post">
+	<form onsubmit="return validateForm()" action="" method="post">
 		<input type="hidden" name="i"  value="<?php echo $v['testid']; ?>">
 		<div class="row">
 			<div class="input-field col s12 m12 l12">
-				<input type="text" id="tstnam" name="tstnam" value="<?php echo $v['testname']; ?>">
+				<input type="text" id="tstnam" name="tstnam" minlength="3" value="<?php echo $v['testname']; ?>">
 				<label for="tstnam">Test Name</label>
 			</div>
 		</div>
@@ -105,6 +105,96 @@ if(isset($_SESSION["user"]))
 <?php
 	}
 ?>
+<script>
+
+    function validateForm(){
+        var strMessage = "";
+
+        /* Checking each form fields   */
+        if($("#tstnam").val()==""){
+            strMessage += "Please enter Test name</br>";
+            toastr["error"](strMessage);
+            $("#tstnam").focus();
+            return false;
+        }
+
+        var alphanumers = /^[a-zA-Z0-9]+$/;
+        if(!alphanumers.test($("#tstnam").val())){
+            strMessage += "Test name must not contain special characters</br>";
+            toastr["error"](strMessage);
+            $("#tstnam").focus();
+            return false;
+        }
+
+        if($("#cor").val()==""){
+            strMessage += "Please select course</br>";
+            toastr["error"](strMessage);
+            $("#cor").focus();
+            return false;
+        }
+        if($("#sem").val()==""){
+            strMessage += "Please select Semester</br>";
+            toastr["error"](strMessage);
+            $("#sem").focus();
+            return false;
+        }
+        if($("#div").val()==""){
+            strMessage += "Please select Division</br>";
+            toastr["error"](strMessage);
+            $("#div").focus();
+            return false;
+        }
+        if($("#fr").val()==""){
+            strMessage += "Please select Valid From date</br>";
+            toastr["error"](strMessage);
+            $("#fr").focus();
+            return false;
+        }
+        if($("#to").val()==""){
+            strMessage += "Please select Valid To date</br>";
+            toastr["error"](strMessage);
+            $("#to").focus();
+            return false;
+        }
+
+        if($("#fr").val() > $("#to").val()){
+            strMessage += "Valid to date is invalid</br>";
+            toastr["error"](strMessage);
+            $("#to").focus();
+            return false;
+        }
+
+        if($("#tq").val()==""){
+            strMessage += "Please enter Total Question</br>";
+            toastr["error"](strMessage);
+            $("#tq").focus();
+            return false;
+        }
+
+        if(!$.isNumeric($("#tq").val())){
+            strMessage += "Total question field should be number only</br>";
+            toastr["error"](strMessage);
+            $("#tq").focus();
+            return false;
+        }
+
+        if($("#dur").val()==""){
+            strMessage += "Please select Total Duration</br>";
+            toastr["error"](strMessage);
+            $("#dur").focus();
+            return false;
+        }
+        if($("#tc").val()==""){
+            strMessage += "Please select Total Code</br>";
+            toastr["error"](strMessage);
+            $("#tc").focus();
+            return false;
+        }
+        /* Checking each form fields   */
+
+        return true;
+    }
+</script>
 </body>
 </html>
 <?php
